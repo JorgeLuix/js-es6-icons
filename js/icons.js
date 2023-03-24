@@ -114,7 +114,7 @@ const icons = [
     }
 ];
 
-//function per creare le card
+//funzione per creare le cards
 
 function creatCard(filterIcons) {
     const card = document.querySelector('.row');
@@ -127,7 +127,7 @@ filterIcons.forEach(element => {
         <div class="card-body d-flex flex-column 
         justify-content-center align-items-center fs-3 py-4"
         style="color:${element.color}">
-        <i class="${element.prefix}${element.family}${element.prefix}${element.name};"></i>
+        <i class="${element.prefix}${element.family} ${element.prefix}${element.name}"></i>
         <span>${element.name}</span>
         </div>
     </div>
@@ -136,3 +136,37 @@ filterIcons.forEach(element => {
 });
 card.innerHTML = content;
 }
+//funzione per filtrare le icone
+function filterIcons(icons, type) {
+    return icons.filter(icon => {
+        return icon.type === type 
+    })
+}
+
+// funzione per aggiungere select alla pagina
+function addSelect() {
+    const select = document.getElementById('type-select');
+    const types = ['all', 'animal', 'vegetable', 'user'];
+
+    types.forEach(type => {
+        const option = document.createElement('option');
+        option.value = type;
+        option.text = type
+        select.add(option);
+    });
+
+    select.addEventListener('change', function() {
+        const selectedType = this.value;
+        let filteredIcons;
+        if (selectedType === "all") {        
+            filteredIcons = icons;
+        } else {
+            filteredIcons = filterIcons(icons, selectedType);
+        }
+        creatCard(filteredIcons);
+    });
+}
+    addSelect();
+    creatCard(icons);
+
+
