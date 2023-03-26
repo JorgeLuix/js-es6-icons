@@ -142,7 +142,7 @@ filterIcons.forEach(element => {
         justify-content-center align-items-center fs-3 py-4"
         style="color:${element.color}">
         <i class="${element.prefix}${element.family} ${element.prefix}${element.name}"></i>
-        <span>${element.name}</span>
+        <span class="fw-bold" >${element.name}</span>
         </div>
     </div>
     </div>`;
